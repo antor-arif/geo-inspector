@@ -1,2 +1,7 @@
-import { Inspector } from './core/Inspector.js';
-export default Inspector;
+export {
+    getFullDetails,
+    getBasicInfo,
+    getTimezone,
+    getConnectionDetails,
+    getCountryDetails
+} from './core/Inspector.js';
