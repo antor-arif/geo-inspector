@@ -1,0 +1,26 @@
+{
+  "name": "geo-inspector",
+  "version": "1.0.0",
+  "description": "Universal IP intelligence tracker. Works on Node.js and Browsers.",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.esm.js",
+  "exports": {
+    "import": "./dist/index.esm.js",
+    "require": "./dist/index.cjs"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "keywords": ["geo", "ip", "tracker", "timezone", "ipwhois", "frontend", "backend", "ip tracker"],
+  "author": "Arifur Rahman",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "rollup": "^3.0.0",
+    "rollup-plugin-javascript-obfuscator": "^4.0.0",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}
