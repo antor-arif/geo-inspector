@@ -1,6 +1,6 @@
 {
   "name": "geo-inspector",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Universal IP intelligence tracker. Works on Node.js and Browsers.",
   "main": "./dist/index.cjs",
   "module": "./dist/index.esm.js",

@@ -1,67 +1,65 @@
-# 🌍 geo-inspector
+# geo-inspector
 
-**geo-inspector** is a universal IP intelligence tracking library. It supports both `import` and `require`, runs in Node.js and browsers, and gives detailed location, timezone, and connection metadata.
+> A professional-grade dynamic IP geolocation tracker that works in **both frontend and backend**.
 
----
-
-## 🚀 Features
-- 🌐 IP to Location lookup
-- 🕒 Timezone info
-- 📡 ISP / ASN details
-- 🏳 Country, capital, flag, borders
-- 📍 Latitude / Longitude
-- 🌍 Supports IPv4 & IPv6
-- ⚙ Works in both frontend and backend
-- 🧱 Supports both `require()` and `import`
-- 🔐 Obfuscated production code
-
----
+## 🔥 Features
+- Detects user's timezone, IP, location, ISP, and more
+- Works in both browser and Node.js
+- Auto-detects environment
+- Supports both `require` and `import`
 
 ## 📦 Installation
 ```bash
 npm install geo-inspector
+# or
+yarn add geo-inspector
 ```
 
----
+## 📖 Usage
 
-## ✨ Usage
-
-### ✅ ESM
+### ➤ Frontend (Browser)
 ```js
-import Inspector from 'geo-inspector';
-const geo = new Inspector();
-geo.getBasicInfo().then(console.log);
+import { GeoInspector } from 'geo-inspector';
+
+const geo = new GeoInspector();
+geo.getFullDetails().then(console.log);
 ```
 
-### ✅ CommonJS
+### ➤ Backend (Node.js / Express)
 ```js
-const Inspector = require('geo-inspector');
-const geo = new Inspector();
-geo.getBasicInfo().then(console.log);
-```
+const { GeoInspector } = require('geo-inspector');
 
----
+app.get('/api/location', async (req, res) => {
+  const geo = new GeoInspector(req);
+  const info = await geo.getFullDetails();
+  res.json(info);
+});
+```
 
 ## 📘 API Methods
+- `getFullDetails()` – returns full IP details
+- `getBasicInfo()` – returns IP, city, country, region, lat/lon
+- `getTimezone()` – returns timezone info
+- `getConnectionDetails()` – returns ISP and connection info
+- `getCountryDetails()` – returns flag, capital, borders, etc.
 
-### `getBasicInfo()`
-Returns `{ ip, city, region, country, latitude, longitude }`
-
-### `getTimezone()`
-Returns `{ id, abbr, is_dst, offset, utc, current_time }`
-
-### `getConnectionDetails()`
-Returns `{ isp, org, asn, domain }`
-
-### `getCountryDetails()`
-Returns `{ country, code, capital, borders, is_eu, flag }`
-
-### `getFullDetails()`
-Returns the full raw response
+## 🧠 Example Response
+```json
+{
+  "ip": "103.148.74.116",
+  "success": true,
+  "country": "Bangladesh",
+  "city": "Rajshahi",
+  "timezone": {
+    "id": "Asia/Dhaka",
+    "utc": "+06:00"
+  },
+  "connection": {
+    "isp": "Amber IT"
+  }
+}
+```
 
 ---
 
-## 📄 License
-MIT
-
-
+> Built with ❤️ by [Arifur Rahman](https://github.com/antor-arif)
