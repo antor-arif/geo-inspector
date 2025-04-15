@@ -12,15 +12,32 @@
   "scripts": {
     "build": "rollup -c"
   },
-  "keywords": ["geo", "ip", "tracker", "timezone", "ipwhois", "frontend", "backend", "ip tracker"],
+  "keywords": [
+    "geo",
+    "ip",
+    "tracker",
+    "timezone",
+    "ipwhois",
+    "frontend",
+    "backend",
+    "ip tracker"
+  ],
   "author": "Arifur Rahman",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-terser": "^0.4.3",
     "rollup": "^3.0.0",
-    "rollup-plugin-javascript-obfuscator": "^4.0.0",
-    "rollup-plugin-terser": "^7.0.2"
-  }
+    "rollup-plugin-obfuscator": "^1.1.0"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antor-arif/geo-inspector.git"
+  },
+  "bugs": {
+    "url": "https://github.com/antor-arif/geo-inspector/issues"
+  },
+  "homepage": "https://github.com/antor-arif/geo-inspector#readme"
 }

@@ -1,3 +1,8 @@
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import  terser  from '@rollup/plugin-terser';
+import obfuscator from 'rollup-plugin-obfuscator';
+
 export default [
     {
       input: 'src/index.js',
@@ -10,13 +15,12 @@ export default [
         commonjs(),
         terser(),
         obfuscator({
-          compact: true,
-          controlFlowFlattening: true,
-          deadCodeInjection: true,
-          debugProtection: true,
-          stringArrayEncoding: true,
-          transformObjectKeys: true,
-        }),
+            compact: true,
+            controlFlowFlattening: true,
+            deadCodeInjection: true,
+            debugProtection: true,
+            disableConsoleOutput: true,
+          })
       ],
     }
   ];
