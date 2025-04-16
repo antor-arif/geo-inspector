@@ -1,47 +1,68 @@
-import { fetchIPData } from '../utils/Request.js';
+import axios from 'axios';
 
-export class Inspector {
-  constructor(ip = '') {
-    this.ip = ip;
+function extractIP(req) {
+  const xForwardedFor = req.headers['x-forwarded-for'];
+  if (xForwardedFor) {
+    const ips = xForwardedFor.split(',').map(ip => ip.trim());
+    return ips[0];
+  }
+  return req.connection?.remoteAddress || null;
+}
+
+async function fetchData(req = null) {
+  const isNode = typeof window === 'undefined';
+  let url = 'https://ipwho.is';
+
+  if (isNode && req) {
+    const ip = extractIP(req);
+    if (ip) url = `https://ipwho.is/${ip}`;
   }
 
-  async getFullDetails() {
-    const data = await fetchIPData(this.ip);
-    delete data["About Us"];
+  try {
+    const res = await axios.get(url);
+    const data = res.data;
+    delete data['About Us'];
     return data;
+  } catch (error) {
+    return { success: false, message: error.message };
   }
+}
 
-  async getBasicInfo() {
-    const data = await fetchIPData(this.ip);
-    return {
-      ip: data.ip,
-      city: data.city,
-      country: data.country,
-      region: data.region,
-      latitude: data.latitude,
-      longitude: data.longitude
-    };
-  }
+// Function versions of the original class methods:
+export async function getFullDetails(req = null) {
+  return await fetchData(req);
+}
 
-  async getTimezone() {
-    const data = await fetchIPData(this.ip);
-    return data.timezone;
-  }
+export async function getBasicInfo(req = null) {
+  const data = await fetchData(req);
+  return {
+    ip: data.ip,
+    city: data.city,
+    country: data.country,
+    region: data.region,
+    latitude: data.latitude,
+    longitude: data.longitude
+  };
+}
 
-  async getConnectionDetails() {
-    const data = await fetchIPData(this.ip);
-    return data.connection;
-  }
+export async function getTimezone(req = null) {
+  const data = await fetchData(req);
+  return data.timezone;
+}
 
-  async getCountryDetails() {
-    const data = await fetchIPData(this.ip);
-    return {
-      country: data.country,
-      country_code: data.country_code,
-      capital: data.capital,
-      flag: data.flag,
-      borders: data.borders,
-      is_eu: data.is_eu
-    };
-  }
+export async function getConnectionDetails(req = null) {
+  const data = await fetchData(req);
+  return data.connection;
+}
+
+export async function getCountryDetails(req = null) {
+  const data = await fetchData(req);
+  return {
+    country: data.country,
+    country_code: data.country_code,
+    capital: data.capital,
+    flag: data.flag,
+    borders: data.borders,
+    is_eu: data.is_eu
+  };
 }
