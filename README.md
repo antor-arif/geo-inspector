@@ -1,14 +1,14 @@
 # geo-inspector
 
-> A professional-grade dynamic IP geolocation tracker that works in **both frontend and backend**.
+> A robust, professional-grade dynamic IP geolocation tracker designed for backend integration. It operates seamlessly regardless of whether the server is hosted on-premises or in the cloud.
 
 ## 🔥 Features
 - Detects user's timezone, IP, location, ISP, and more
-- Works in both browser and Node.js
+- Works in Node.js
 - Auto-detects environment
-- Supports both `require` and `import`
+- Supports `require` 
 
-## 📦 Installation (Node.js / Frontend with Bundler)
+## 📦 Installation (Node.js)
 ```bash
 npm install geo-inspector
 # or
@@ -17,19 +17,6 @@ yarn add geo-inspector
 
 ## 📖 Usage
 
-### ➤ Frontend (Browser)
-```js
-import {
-  getFullDetails,
-  getBasicInfo,
-  getTimezone,
-  getConnectionDetails,
-  getCountryDetails
-} from 'geo-inspector';
-
-getFullDetails().then(console.log);
-
-```
 
 ### ➤ Backend (Node.js / Express)
 ```js
