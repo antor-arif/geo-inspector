@@ -8,7 +8,7 @@
 - Auto-detects environment
 - Supports both `require` and `import`
 
-## 📦 Installation
+## 📦 Installation (Node.js / Frontend with Bundler)
 ```bash
 npm install geo-inspector
 # or
@@ -19,21 +19,33 @@ yarn add geo-inspector
 
 ### ➤ Frontend (Browser)
 ```js
-import { GeoInspector } from 'geo-inspector';
+import {
+  getFullDetails,
+  getBasicInfo,
+  getTimezone,
+  getConnectionDetails,
+  getCountryDetails
+} from 'geo-inspector';
 
-const geo = new GeoInspector();
-geo.getFullDetails().then(console.log);
+getFullDetails().then(console.log);
+
 ```
 
 ### ➤ Backend (Node.js / Express)
 ```js
-const { GeoInspector } = require('geo-inspector');
+const {
+  getFullDetails,
+  getBasicInfo,
+  getTimezone,
+  getConnectionDetails,
+  getCountryDetails
+} = require('geo-inspector');
 
 app.get('/api/location', async (req, res) => {
-  const geo = new GeoInspector(req);
-  const info = await geo.getFullDetails();
+  const info = await getFullDetails(req);
   res.json(info);
 });
+
 ```
 
 ## 📘 API Methods
